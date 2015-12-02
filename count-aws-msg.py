@@ -25,18 +25,13 @@ secret_access_key = str[1]
 # Set up a connection to the AWS service. 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=access_key_id, aws_secret_access_key=secret_access_key)
 
-# read messages from queue
+# delete a queue
+
+
 
 queue = conn.get_queue(queue_name)
 
+messages = queue.count()
 
-m = queue.read(60)
-str = m.get_body()
-print "Message: " + str
-
-
-
-
-
-
-
+print ("Messages")
+print messages

@@ -30,10 +30,15 @@ conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=access_key_id, 
 queue = conn.get_queue(queue_name)
 
 
-m = queue.read(60)
-str = m.get_body()
-print "Message: " + str
+m = queue.read()
 
+
+
+str = m.get_body()
+
+queue.delete_message(m)
+print "Message: " + str
+print "Message deleted from the queue"
 
 
 
